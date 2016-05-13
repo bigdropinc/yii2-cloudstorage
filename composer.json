@@ -17,6 +17,7 @@
     },
     "require-dev": {
         "aws/aws-sdk-php": "2.5.2",
+        "phpunit/phpunit": "4.8.24",
         "rackspace/php-opencloud": "~1.16"
     },
     "autoload": {
