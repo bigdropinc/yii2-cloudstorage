@@ -1,0 +1,27 @@
+{
+    "name": "bigdropinc/yii2-cloudstorage",
+    "description": "Common interface for amazon s3 and rackspace cloud files",
+    "keywords": ["yii2", "cloud", "storage", "amazon", "s3", "rackspace", "remote"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Buba Suma",
+            "email": "bubasuma@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "yiisoft/yii2": ">=2.0.6"
+    },
+    "require-dev": {
+        "aws/aws-sdk-php": "2.5.2",
+        "rackspace/php-opencloud": "~1.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "bigdropinc\\cloudstorage\\": ""
+        }
+    }
+}
