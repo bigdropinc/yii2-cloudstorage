@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit bootstrap="./tests/bootstrap.php"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="true"
+         verbose="true"
+>
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <var name="RCF_USERNAME" value="username" />
+        <var name="RCF_API_KEY" value="***" />
+        <var name="RCF_REGION" value="LON" />
+        <var name="RCF_CONTAINER" value="test" />
+        <var name="AS3_KEY" value="key" />
+        <var name="AS3_SECRET" value="***" />
+        <var name="AS3_BUCKET" value="test" />
+    </php>
+</phpunit>

@@ -11,11 +11,6 @@ use Yii;
  */
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->mockWebApplication();
-    }
 
     /**
      * Clean up after test.
@@ -41,7 +36,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             'vendorPath' => dirname(__DIR__) . '/vendor',
         ], $config));
     }
-
+    
+    /**
+     * Populates Yii::$app with a new application
+     * The application will be destroyed on tearDown() automatically.
+     * @param array $config The application configuration, if needed
+     * @param string $appClass name of the application class to create
+     */
     protected function mockWebApplication($config = [], $appClass = '\yii\web\Application')
     {
         new $appClass(ArrayHelper::merge([

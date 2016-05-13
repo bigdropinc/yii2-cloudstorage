@@ -6,6 +6,7 @@
  */
 namespace tests;
 
+use bigdropinc\cloudstorage\AmazonS3;
 use Yii;
 
 /**
@@ -14,11 +15,43 @@ use Yii;
  * @author Buba Suma <bubasuma@gmail.com>
  * @since 1.0
  */
-class AmazonS3Test extends TestCase
+class AmazonS3Test extends AbstractCloudStorageTest
 {
-
-    public function testAppId()
+    protected function setUp()
     {
-        $this->assertEquals(Yii::$app->id, 'yii2-cloudstorage');
+        parent::setUp();
+        $this->mockWebApplication([
+            'components' => [
+                'cloudStorage' => [
+                    'class' => AmazonS3::className(),
+                    'key' => $GLOBALS['AS3_KEY'],
+                    'secret' => $GLOBALS['AS3_SECRET'],
+                    'bucket' => $GLOBALS['AS3_BUCKET'],
+                    'localeStorageBasePath' => '@tests',
+                ],
+            ],
+        ]);
+    }
+
+    public function testUpload()
+    {
+        return parent::testUpload();
+    }
+
+    /**
+     * @requires function curl_init
+     * @requires function curl_exec
+     * @requires function curl_close
+     * @requires function curl_getinfo
+     * @depends testUpload
+     * @param $publicUrl
+     */
+    public function testDelete($publicUrl)
+    {
+        Yii::$app->get('cloudStorage')->delete($this->file);
+        $ch = curl_init($publicUrl);
+        curl_exec($ch);
+        $this->assertEquals(403, curl_getinfo($ch, CURLINFO_HTTP_CODE));
+        curl_close($ch);
     }
 }
